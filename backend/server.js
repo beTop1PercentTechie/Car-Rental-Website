@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-// will connect db latter
+// will connect db latter 
 
 
 const app = express()
