@@ -1,5 +1,7 @@
-const User = require('../models/userModel');
-const {verifyToken} = require('../utils/jwt');
+const { verifyToken } = require('../utils/jwt');
+const Admin = require('../models/adminModel');
+
+
 
 exports.protect = async (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -23,12 +25,12 @@ exports.protect = async (req, res, next) => {
         return res.status(401).json({message: 'Invalid or expired token'})
     }
 
-    const user = await User.findById(decoded.id)
-    if(!user) {
+    const admin = await Admin.findById(decoded.id)
+    if(!admin) {
         return res.status(401).json({message: 'User not found'})
     }
 
-    req.user = user;
+    req.admin = admin;
     next();
 }
 

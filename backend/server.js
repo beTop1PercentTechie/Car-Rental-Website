@@ -4,6 +4,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db')
 const userRoutes = require('./routes/userRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 
 dotenv.config();
@@ -25,7 +26,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 // Routes
 app.use('/api/users', userRoutes)
-
+app.use('/api/admin', adminRoutes)
 
 
 const PORT = process.env.PORT || 5000;

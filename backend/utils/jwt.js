@@ -6,7 +6,7 @@ exports.createToken = (user) => {
             id: user._id
         },
         process.env.JWT_SECRET,
-        { expiresIn: '2m' }
+        { expiresIn: '30d' }
     )
 }
 
