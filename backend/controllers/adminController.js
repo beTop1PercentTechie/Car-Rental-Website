@@ -89,24 +89,17 @@ const updateProfile = async (req, res) => {
     try{
         const { name, email, phone } = req.body;
 
-        const admin = Admin.findByIdAndUpdate(
+        const admin = await Admin.findByIdAndUpdate(
             req.admin._id,
             {name, email, phone},
             { new: true }
-        ).select('-password');
+        ).select('-password -_id -updatedAt -__v');
         
         
         res.json({
             success: true,
             message: 'Profile updated successfully',
-            data: {
-                name: admin.name,
-                email: admin.email,
-                phone: admin.phone,
-                role: 'admin',
-                lastLogin: admin.lastLogin,
-                joinedDate: admin.createdAt
-            }     
+            data: admin
         })
 
     }
@@ -138,8 +131,6 @@ const changePassword = async (req, res) => {
         }
 
         admin.password = newPassword
-        // const salt = await bcrypt.gentSalt(10);
-        // admin.password = await bcrypt.hash(newPassword, salt);
         await admin.save();
 
         res.json({
