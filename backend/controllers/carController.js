@@ -10,6 +10,7 @@ const addCar = async (req, res) => {
             })
         }
         //   Create car from data
+        // console.log(req.file)
         const car = await Car.create({
             name: req.body.name,
             brand: req.body.brand,
@@ -19,8 +20,9 @@ const addCar = async (req, res) => {
             seats: parseInt(req.body.seats),
             fuelType: req.body.fuelType.toLowerCase(),
             transmission: req.body.transmission.toLowerCase(),
-            features: req.body.features,
-            image: `/uploads/car/${req.file.filename}`,
+            features: req.body.features || [],
+            image: `/uploads/cars/${req.file.filename}`,
+            // image: `${req.file.location}`,
             isAvaible: true,
             category: req.body.category
         })
@@ -187,3 +189,7 @@ const getCarImage = async (req, res) => {
 
 
 // Check car availibility
+
+
+
+module.exports = { addCar, getCarById, searchCars, getCarImage }
