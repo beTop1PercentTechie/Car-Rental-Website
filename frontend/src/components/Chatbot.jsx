@@ -1,4 +1,4 @@
-let newKey = "AIzaSyBGVVCp_9lshchmdDb1F7IR7CNEyyEflm0"
+
 
 
 
@@ -24,7 +24,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
 
-  
+
   const apiKey = newKey;
   const genAI = new GoogleGenerativeAI(apiKey);
 
